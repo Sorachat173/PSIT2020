@@ -1,9 +1,18 @@
 from tkinter import *
 from tkinter import ttk
+import csv
+
+
+with open('db_inminder.csv', 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(["TimestampID", "Priority", "Activity"])
 
 def on_click(e):
     print("Your Activity is:%s\nPriority:%s\nDay:%s\nMonth:%s\nYear:%s\nTime:%s:%s" % (tv_atv.get(), v_important.get(), days.get(), months.get(), years.get(),\
         hours.get(), minutes.get()))
+    compound = str(days.get()) + str(months.get()) + str(years.get()) + str(hours.get()) + str(minutes.get())
+    writer.writerow([compound, v_important.get(), tv_atv.get()])
+    
 window = Tk()
 v_important = StringVar()
 v_important.set("4")
@@ -17,7 +26,7 @@ f4 = Frame(window)
 f4.grid(row=5, column=0, sticky=W)
 tv_atv = StringVar()
 Label(f1, text="Activity : ").pack(side=LEFT)
-activitys = Entry(f1, width=25, textvariable=tv_atv).pack(side=LEFT)
+Entry(f1, width=25, textvariable=tv_atv).pack(side=LEFT)
 
 Label(f2, text="Important Level (Choose one)").pack()
 
