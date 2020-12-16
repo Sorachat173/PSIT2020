@@ -1,5 +1,11 @@
 from tkinter import *
 from tkinter import ttk
+import csv
+
+
+with open('db_inminder.csv', 'w') as file:
+        writer = csv.writer(file)
+        writer.writerow(["TimestampID", "Priority", "Activity"])
 
 
 def on_click(e):
